@@ -1,11 +1,13 @@
 package main;
 
 import pieces.PieceColor;
+import players.Player;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
 
 public class MainFrame extends JFrame {
@@ -97,7 +99,7 @@ public class MainFrame extends JFrame {
 
     private static void saveCurrentGame(JFrame frame) {
         if (game != null && !game.isGameOver()) {
-            game.save("game.txt", "leaderboard.txt", "playernames.txt");
+            game.save("game.txt", "playernames.txt");
             JOptionPane.showMessageDialog(frame, "Game saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
         else if (game != null && game.isGameOver()) {
@@ -109,11 +111,16 @@ public class MainFrame extends JFrame {
     }
 
     private static void loadGame(JFrame frame) throws IOException, ClassNotFoundException {
+        File f1 = new File("game.txt");
+        File f2 = new File("playernames.txt");
+        if (!f1.exists() || !f2.exists()) {
+            JOptionPane.showMessageDialog(frame, "Game file(s) missing.\nCan't load game.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         Player[] players = game.loadPlayers("playernames.txt");
         clearFrame(frame);
         game = new Game(frame, players[0], players[1]);
         game.loadGame("game.txt");
-        game.loadLeaderBoard("leaderboard.txt");
         game.loadBoardImages();
         frame.revalidate();
         frame.repaint();

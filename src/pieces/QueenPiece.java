@@ -1,6 +1,6 @@
 package pieces;
 
-import main.Board;
+import board.Board;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

@@ -1,11 +1,8 @@
 package pieces;
 
-import main.Board;
+import board.Board;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.io.Serializable;
 
 public abstract class Piece implements Serializable {
