@@ -5,22 +5,35 @@ import board.Board;
 import java.awt.*;
 import java.io.Serializable;
 
+/**
+ * Absztrakt osztály, amely a bábuk alapvető attribútumait tartalmazza.
+ * Szerializálható, mivel a bábuk 2D tömbjét kell tudni elmenteni.
+ */
 public abstract class Piece implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public int col, row;
-    public int xPos, yPos;
+    protected int col, row;
+    protected int xPos, yPos;
     protected PieceColor color;
-    public String name;
-    public int value;
     Board board;
 
+    /**
+     * Beállítja a boardot amin a bábu megtalálható.
+     * @param b Board objektum.
+     */
     public Piece(Board b) {
         board = b;
     }
 
+    /**
+     * Absztrakt metódus, amit minden leszármazottnak meg kell valósítania.
+     * @param g Graphics2D paraméter.
+     */
     public abstract void paint(Graphics2D g);
 
+    /**
+     * Absztrakt metódus, amit minden leszármazottnak meg kell valósítania.
+     */
     public abstract void loadImage();
 
     public int getCol() {

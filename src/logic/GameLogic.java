@@ -22,6 +22,7 @@ public class GameLogic implements Serializable {
      * Ellenőrzi, hogy egy adott bábuval végrehajtott lépés érvényes-e.
      * Ehhez az updateListOf... metódusok által visszaadott listákat használja..
      * A lépés típusát enumként adja vissza: normál lépés, ütés vagy szabálytalan lépés.
+     * Ha a játék már véget ért, minden lépés érvénytelen.
      *
      * @param board A játék táblája.
      * @param p A kiválasztott bábu.
@@ -30,6 +31,7 @@ public class GameLogic implements Serializable {
      * @return A lépés típusa (MoveType).
      */
     public MoveType isValidMove(Board board, Piece p, int r, int c) {
+        if (checkGameOver(board.getPieces(), board.getOutputArea())) return MoveType.IllegalMove;
         List<Move> listOfMoves = updateListOfNormalMoves(board.getPieces(), p, board.getCurrentPlayer());
         List<Capture> listOfCaptures = updateListOfCaptures(board.getPieces(), p, board.getCurrentPlayer());
         for (Move m : listOfMoves) {

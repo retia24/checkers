@@ -17,9 +17,8 @@ import java.util.Map;
 public class LeaderBoard extends JPanel implements Serializable {
     static final long serialVersionUID = 1L;
 
-    HashMap<String, Integer> LB = new HashMap<>(); // A játékosok pontszámainak tárolására szolgáló adatstruktúra.
-    JList<String> jList = new JList<>(); // A ranglista megjelenítésére használt GUI komponens.
-    DefaultListModel<String> listModel = new DefaultListModel<>(); // A JList modellje, amely a megjelenített adatokat tartalmazza.
+    private final HashMap<String, Integer> LB = new HashMap<>(); // A játékosok pontszámainak tárolására szolgáló adatstruktúra.
+    private final DefaultListModel<String> listModel = new DefaultListModel<>(); // A JList modellje, amely a megjelenített adatokat tartalmazza.
 
     private static final int lbWidth = 120;
 
@@ -43,6 +42,8 @@ public class LeaderBoard extends JPanel implements Serializable {
         headerLabel.setBackground(new Color(0, 158, 255));
         headerLabel.setForeground(Color.WHITE);
 
+        // A ranglista megjelenítésére használt GUI komponens.
+        JList<String> jList = new JList<>();
         jList.setModel(listModel);
         JScrollPane scrollPane = new JScrollPane(jList);
 

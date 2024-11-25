@@ -12,8 +12,8 @@ import java.awt.*;
  */
 public class BoardOutput extends JTextArea {
 
-    private Player[] players = new Player[2]; // A játékosok tömbje.
-    LeaderBoard leaderBoard;
+    private final Player[] players = new Player[2]; // A játékosok tömbje.
+    private final LeaderBoard leaderBoard;
 
     public BoardOutput(LeaderBoard lb, Board b, Player p1, Player p2) {
         super();
