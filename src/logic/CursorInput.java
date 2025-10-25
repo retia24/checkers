@@ -23,6 +23,7 @@ public class CursorInput implements MouseListener, MouseMotionListener {
     /**
      * A kapott event alapján, a kurzor pozíciója alapján megállapítja azt a bábut amelyre rányomott a felhasználó.
      * Ha van már kiválasztott bábu, akkor nem csinál semmit. Ez azért szükséges, hogy ütéskényszer esetén csak az ütő bábuval lehessen lépni.
+     * Ha a játék már végetért, szintén nem csinál semmit.
      * Ha nincs még kiválasztott bábu, akkor beállítja az éppen választott bábut annak.
      *
      * @param e Az event.
@@ -33,7 +34,7 @@ public class CursorInput implements MouseListener, MouseMotionListener {
         int row = e.getY() / board.getRowandcolsize();
         Piece pressedPiece = board.getPieces()[row][col];
 
-        if (board.getSelectedPiece() != null) {
+        if (board.getSelectedPiece() != null || board.isGameWon()) {
             return;
         }
 

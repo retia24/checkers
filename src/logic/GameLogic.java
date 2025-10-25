@@ -31,7 +31,6 @@ public class GameLogic implements Serializable {
      * @return A lépés típusa (MoveType).
      */
     public MoveType isValidMove(Board board, Piece p, int r, int c) {
-        if (checkGameOver(board.getPieces(), board.getOutputArea())) return MoveType.IllegalMove;
         List<Move> listOfMoves = updateListOfNormalMoves(board.getPieces(), p, board.getCurrentPlayer());
         List<Capture> listOfCaptures = updateListOfCaptures(board.getPieces(), p, board.getCurrentPlayer());
         for (Move m : listOfMoves) {
